@@ -1,9 +1,46 @@
 <template>
-    <h3>Soy pokemon options</h3>
+    <div class="options-container">
+        <ul>
+            <li v-for="item in options" :key="item.id" @click="$emit('selection', item.id)">
+                {{ item.name }}
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>
 export default {
-    name: 'PokemonOptions'
+    name: 'PokemonOptions',
+    props: {
+        options: {
+            type: Array,
+            required: true,
+            default: []
+        }
+    }
 }
 </script>
+
+<style scoped>
+ul {
+    list-style-type: none;
+}
+
+li {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    margin-bottom: 10px;
+    width: 250px;
+}
+
+li:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.options-container {
+    display: flex;
+    justify-content: center;
+}
+</style>
